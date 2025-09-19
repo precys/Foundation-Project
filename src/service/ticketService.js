@@ -125,33 +125,6 @@ async function processTicket(ticketId, status) {
 
 
 
-// async function processTicket(ticketId, status) {
-//     // validate status
-//     if (!["Approved", "Denied"].includes(status)) {
-//         throw new Error("Invalid status. Must be 'Approved' or 'Denied'.");
-//     }
-
-//     // missing id
-//     const ticket = await ticketDAO.getTicketById(ticketId);
-//     if (!ticket) {
-//         throw new Error("Ticket not found.");
-//     }
-
-//     // only pending tickets allowed
-//     if (ticket.status === "Approved") {
-//         throw new Error("Ticket already APPROVED");
-//     }
-//     if (ticket.status === "Denied") {
-//         throw new Error("Ticket already DENIED");
-//     }
-
-//     // update the ticket status
-//     return await ticketDAO.updateTicketStatus(ticketId, status);
-// }
-
-
-
-
 
 
 

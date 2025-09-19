@@ -1,8 +1,8 @@
-const express = require('express'); // Import Express to handle HTTP requests
-const { loggerMiddleware } = require('./util/logger'); // Custom logger for requests
+const express = require('express'); 
+const { loggerMiddleware } = require('./util/logger');
 
-const userController = require('./controller/userController'); // User routes
-const ticketController = require('./controller/ticketController'); // Ticket routes
+const userController = require('./controller/userController'); 
+const ticketController = require('./controller/ticketController'); 
 
 const app = express();
 const PORT = 3000;

@@ -15,7 +15,7 @@ const logger = createLogger({
 
 function loggerMiddleware(req, res, next) {
     logger.info(`Incoming ${req.method} : ${req.url}`);
-    next(); // Continue to next middleware or route
+    next();
 }
 
 module.exports = { logger, loggerMiddleware };

@@ -9,60 +9,6 @@ const docClient = DynamoDBDocumentClient.from(client);
 
 
 
-// aws dynamodb create-table \
-//   --table-name users_table \
-//   --attribute-definitions AttributeName=username,AttributeType=S \
-//   --key-schema AttributeName=username,KeyType=HASH \
-//   --billing-mode PAY_PER_REQUEST
-
-
-
-// // ensure table exists
-// async function ensureTableExists() {
-//     try {
-//         const desc = await client.send(new DescribeTableCommand({ TableName }));
-//         if (desc.Table.TableStatus !== "ACTIVE") {
-//             logger.info("Waiting for users table to become ACTIVE...");
-//             await waitForTableActive();
-//         } else {
-//             logger.info("Users table exists:", TableName);
-//         }
-//     } catch (err) {
-//         if (err.name === "ResourceNotFoundException") {
-//             logger.info("Creating users table:", TableName);
-//             const params = {
-//                 TableName,
-//                 KeySchema: [{ AttributeName: "username", KeyType: "HASH" }],
-//                 AttributeDefinitions: [{ AttributeName: "username", AttributeType: "S" }],
-//                 BillingMode: "PAY_PER_REQUEST"
-//             };
-//             await client.send(new CreateTableCommand(params));
-//             logger.info("Users table created, waiting to become ACTIVE...");
-//             await waitForTableActive();
-//         } else {
-//             logger.error(err);
-//             throw err;
-//         }
-//     }
-// }
-
-
-
-// // check that table is active to use
-// async function waitForTableActive() {
-//     let retries = 20;
-//     while (retries > 0) {
-//         const desc = await client.send(new DescribeTableCommand({ TableName }));
-//         if (desc.Table.TableStatus === "ACTIVE") return;
-//         await new Promise(r => setTimeout(r, 1000));
-//         retries--;
-//     }
-//     throw new Error(`Table ${TableName} did not become ACTIVE in time`);
-// }
-
-
-
-
 
 
 
@@ -72,7 +18,6 @@ const docClient = DynamoDBDocumentClient.from(client);
 
 // create new user
 async function createUser(user) {
-    //await ensureTableExists();
     try {
         const command = new PutCommand({
             TableName,
@@ -94,7 +39,6 @@ async function createUser(user) {
 
 // get user by username
 async function getUserByUsername(username) {
-    //await ensureTableExists();
     try {
         const command = new GetCommand({
             TableName,
